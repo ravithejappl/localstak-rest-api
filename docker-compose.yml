@@ -6,13 +6,12 @@ services:
     image: localstack/localstack
     network_mode: bridge
     ports:
-      - "4566:4566"
-      - "4571:4571"
+      - "4566-4587:4566-4587"
       - "${PORT_WEB_UI-8080}:${PORT_WEB_UI-8080}"
     environment:
-      - SERVICES=${SERVICES- }
-      - DEBUG=${DEBUG- }
-      - DATA_DIR=${DATA_DIR- }
+      - SERVICES=s3,ssm,ec2,lambda,apigateway,dynamodb,cloudformation
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
       - PORT_WEB_UI=${PORT_WEB_UI- }
       - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR- }
       - KINESIS_ERROR_PROBABILITY=${KINESIS_ERROR_PROBABILITY- }
@@ -20,4 +19,3 @@ services:
       - HOST_TMP_FOLDER=${TMPDIR}
     volumes:
       - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
-      - "/var/run/docker.sock:/var/run/docker.sock"
