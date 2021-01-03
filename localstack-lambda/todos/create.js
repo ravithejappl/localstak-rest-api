@@ -17,7 +17,7 @@ module.exports.create = (event, context, callback) => {
   }
 
   const params = {
-    TableName: process.env.DYNAMODB_TABLE,
+    TableName: 'localstack-lambda-local',
     Item: {
       id: uuid.v1(),
       text: data.text,
@@ -44,6 +44,7 @@ module.exports.create = (event, context, callback) => {
     const response = {
       statusCode: 200,
       body: JSON.stringify(params.Item),
+      result:params.Item
     };
     callback(null, response);
   });

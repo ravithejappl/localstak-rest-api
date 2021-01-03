@@ -3,7 +3,7 @@ const dynamoDb = require('./dynamodb');
 
 module.exports.delete = (event, context, callback) => {
   const params = {
-    TableName: process.env.DYNAMODB_TABLE,
+    TableName: 'localstack-lambda-local',
     Key: {
       id: event.pathParameters.id,
     },
@@ -26,7 +26,8 @@ module.exports.delete = (event, context, callback) => {
     const response = {
       statusCode: 200,
       body: JSON.stringify({}),
+    //  result: JSON.stringify({}),
     };
-    callback(null, response);
+    callback(null, {result:response});
   });
 };

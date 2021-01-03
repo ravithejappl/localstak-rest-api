@@ -2,7 +2,7 @@
 const dynamoDb = require('./dynamodb');
 
 const params = {
-  TableName: process.env.DYNAMODB_TABLE,
+  TableName: 'localstack-lambda-local',
 };
 
 module.exports.list = (event, context, callback) => {
@@ -23,6 +23,7 @@ module.exports.list = (event, context, callback) => {
     const response = {
       statusCode: 200,
       body: JSON.stringify(result.Items),
+      result:result.Items
     };
     callback(null, response);
   });
