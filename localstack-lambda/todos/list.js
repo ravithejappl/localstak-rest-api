@@ -25,6 +25,11 @@ module.exports.list = (event, context, callback) => {
       body: JSON.stringify(result.Items),
       result:result.Items
     };
-    callback(null, response);
+   // callback(null, response);
+    return response = {
+      statusCode: 200,
+      body: JSON.stringify(result.Items),
+      result:result.Items
+    };
   });
 };

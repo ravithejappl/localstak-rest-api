@@ -46,6 +46,11 @@ module.exports.create = (event, context, callback) => {
       body: JSON.stringify(params.Item),
       result:params.Item
     };
-    callback(null, response);
-  });
+    return {
+      statusCode: 200,
+      body: JSON.stringify(params.Item),
+      result:params.Item
+    }
+  })
+  
 };
